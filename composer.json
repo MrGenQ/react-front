@@ -1,0 +1,5 @@
+{
+    "require": {
+        "friendsofsymfony/rest-bundle": "^3.3"
+    }
+}
