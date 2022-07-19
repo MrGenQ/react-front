@@ -3,8 +3,10 @@ import RenderUsersTable from "../main/RenderUsersTable";
 import {useEffect, useState} from "react";
 import API from "../../API";
 import Pagination from "../../misc/Pagination";
+import AuthCheck from "../../services/auth/AuthCheck";
 
 const UserSearch = () => {
+    AuthCheck()
     const [users, setUsers] = useState('')
     const [page, setPage] = useState(1)
     const [lastPage, setLastPage] = useState(0)

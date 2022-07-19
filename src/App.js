@@ -9,6 +9,7 @@ import {UserProvider} from "./context/UserContext";
 import AllPokesHistory from "./components/pokes/AllPokesHistory";
 import UserSearch from "./components/users/UserSearch";
 import UpdateUser from "./components/users/UpdateUser";
+import ImportPokes from "./components/imports/ImportPokes";
 function App() {
     const notify = () => toast;
       return(
@@ -26,6 +27,7 @@ function App() {
                         <Route exact path="/visu-poke-istorija" element={<AllPokesHistory/>}/>
                         <Route exact path="/vartotoju-paieska" element={<UserSearch/>}/>
                         <Route exact path="/redaguoti-profili" element={<UpdateUser/>}/>
+                        <Route exact path="/poke-importas" element={<ImportPokes/>}/>
                     </Routes>
                 </Router>
               </UserProvider>

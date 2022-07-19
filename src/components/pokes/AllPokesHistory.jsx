@@ -7,7 +7,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {useUserContext} from "../../context/UserContext";
 import Pagination from "../../misc/Pagination";
+import AuthCheck from "../../services/auth/AuthCheck";
 const AllPokesHistory = () =>{
+    AuthCheck()
     const {update, handleSetUpdate} = useUserContext()
     const [allPokes, setPokes] = useState([])
     const [startDate, setStartDate] = useState(new Date());
