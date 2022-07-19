@@ -1,3 +1,9 @@
+# How to start this project
+open terminal -> navigate to folder where you want to clone repository -> git clone https://github.com/MrGenQ/Sonaro-front-end.git
+
+cd into the cloned project and type npm install in terminal
+
+then type npm start in terminal
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
