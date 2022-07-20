@@ -10,7 +10,7 @@ const Login = () => {
         event.preventDefault()
         try {
             API.postForm(`/login`, {
-                'email': event.target.email.value,
+                'username': event.target.username.value,
                 'password': event.target.password.value
             }).then(resp => {
                 if(resp.data.error){
@@ -43,12 +43,12 @@ const Login = () => {
                                 <input
                                     type="text"
                                     className="block border border-grey-light w-full p-3 ml-12 mr-12 rounded mb-4 w-full"
-                                    name="email"
-                                    placeholder="El. paštas"/>
+                                    name="username"
+                                    placeholder="Prisijungimo vardas"/>
                             </div>
-                            {errors.email? <div
+                            {errors.username? <div
                                 className="p-2.5 mb-3 text-sm text-red-700 bg-red-100 ml-12 mr-12 rounded-lg dark:bg-red-200 dark:text-red-800"
-                                role="alert"><span className="font-medium">{errors.email}</span>
+                                role="alert"><span className="font-medium">{errors.username}</span>
                             </div>: null}
                             <div className="flex flex-row">
                                 <input

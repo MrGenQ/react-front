@@ -54,9 +54,14 @@ const UpdateUser = () => {
                     <div className="container mx-auto flex-1 flex flex-col items-center justify-center px-2">
                         <div className="bg-white w-full w-6/12 px-6 py-8 rounded shadow-md text-black">
                             <h1 className="mb-8 text-3xl text-center uppercase">Redaguoti profilį</h1>
-
-                            <div className="flex flex-row justify-between">
-                                <div>Vardas</div>
+                            <div className="flex flex-row justify-end gap-4">
+                                <div className="text-gray-500">Prisijungimo vardas</div>
+                                <div className="block border border-grey-light w-full p-3 rounded mb-4 w-full w-8/12">
+                                    {user.username}
+                                </div>
+                            </div>
+                            <div className="flex flex-row justify-end gap-4">
+                                <div className="text-gray-500">Vardas</div>
                                 <input
                                     type="text"
                                     className="block border border-grey-light w-full p-3 rounded mb-4 w-full w-8/12"
@@ -67,8 +72,8 @@ const UpdateUser = () => {
                                 className="p-2.5 mb-3 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
                                 role="alert"><span className="font-medium">{validate.firstName}</span>
                             </div>: null}
-                            <div className="flex flex-row justify-between">
-                                <div>Pavardė</div>
+                            <div className="flex flex-row justify-end gap-4">
+                                <div className="text-gray-500">Pavardė</div>
                                 <input
                                     type="text"
                                     className="block border border-grey-light w-full p-3 rounded mb-4 w-full w-8/12"
@@ -79,8 +84,8 @@ const UpdateUser = () => {
                                 className="p-2.5 mb-3 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
                                 role="alert"><span className="font-medium">{validate.lastName}</span>
                             </div>: null}
-                            <div className="flex flex-row justify-between">
-                                <div>El. paštas</div>
+                            <div className="flex flex-row justify-end gap-4">
+                                <div className="text-gray-500">El. paštas</div>
                                 <input
                                     type="text"
                                     className="block border border-grey-light w-full p-3 rounded mb-4 w-full w-8/12"
@@ -95,8 +100,8 @@ const UpdateUser = () => {
                                 className="p-2.5 mb-3 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
                                 role="alert"><span className="font-medium">{validate.email_exists}</span>
                             </div>: null}
-                            <div className="flex flex-row justify-between">
-                                <div>Slaptažodis</div>
+                            <div className="flex flex-row justify-end gap-4">
+                                <div className="text-gray-500">Slaptažodis</div>
                                 <input
                                     type="password"
                                     className="block border border-grey-light w-full p-3 rounded mb-4 w-full w-8/12"
@@ -110,8 +115,8 @@ const UpdateUser = () => {
                                 className="p-2.5 mb-3 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
                                 role="alert"><span className="font-medium">{validate.password_not_equal}</span>
                             </div>: null}
-                            <div className="flex flex-row justify-between">
-                                <div>Slaptažodio pakartojimas</div>
+                            <div className="flex flex-row justify-end gap-4">
+                                <div className="text-gray-500">Slaptažodio pakartojimas</div>
                                 <input
                                     type="password"
                                     className="block border border-grey-light w-full p-3 rounded mb-4 w-full w-8/12"

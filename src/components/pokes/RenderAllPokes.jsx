@@ -25,7 +25,7 @@ const RenderAllPokes = (props) => {
     return (
         <>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                <td className="px-6 py-4 font-medium dark:text-white whitespace-nowrap">
                     {props.date_time.substring(0, 10)}
                 </td>
                 {sender?

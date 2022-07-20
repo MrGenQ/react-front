@@ -41,6 +41,9 @@ const NavbarMenu = () =>{
                         <div className="p-4">
                             <Link to='/poke-importas' className="flex justify-center uppercase">Poke importas</Link>
                         </div>
+                        <div className="p-4">
+                            <Link to='/vartotoju-importas' className="flex justify-center uppercase">Vartotojų importas</Link>
+                        </div>
                     </Menu.Items>
                 </Transition>
             </Menu>

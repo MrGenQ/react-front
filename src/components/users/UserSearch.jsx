@@ -89,11 +89,11 @@ const UserSearch = () => {
                                 </table>
                             </div>
                         :null}
-                        <div className="pt-2 flex justify-center pl-96">
-                            {(users.length !== 0)?
+                        {(users.length !== 0)?
+                            <div className="pt-2 flex justify-center pl-96">
                                 <Pagination page={page} setPage={setPage} lastPage={lastPage}/>
-                                :null}
-                        </div>
+                            </div>
+                        :null}
                     </div>
                 </div>
             </div>

@@ -12,28 +12,35 @@ const AllPokesHistory = () =>{
     AuthCheck()
     const {update, handleSetUpdate} = useUserContext()
     const [allPokes, setPokes] = useState([])
+    const [pokesByDate, setPokesByDate] = useState([])
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [filtered, setFiltered] = useState({})
     const [page, setPage] = useState(1)
+    const [pageByDate, setPageByDate] = useState(1)
     const [lastPage, setLastPage] = useState(0)
+    const [lastPageByDate, setLastPageByDate] = useState(0)
     const [searched, setSearched] = useState(false)
+    const [searchedByDate, setSearchedByDate] = useState(false)
     useEffect(() => {
         try {
             API.postForm('/filter-pokes-from', {
                 start: startDate.toISOString().substring(0, 10),
                 end: endDate.toISOString().substring(0, 10),
-                //limit: 10,
-                //offset: (page-1)*10
+                limit: 10,
+                offset: (pageByDate-1)*10
             })
                 .then(response => {
-                    console.log(response)
-                    setPokes(response.data)
+                    console.log(response.data.page)
+                    if(response.data.page){
+                        setLastPageByDate(Math.ceil(response.data.page.length/10))
+                    }
+                    setPokesByDate(response.data.data)
                 })
         } catch (error){
             console.log(error)
         }
-    }, [startDate, endDate, searched])
+    }, [startDate, endDate, pageByDate, searchedByDate])
     useEffect(() => {
         try {
             API.postForm('/get-all-pokes', {
@@ -54,8 +61,8 @@ const AllPokesHistory = () =>{
         event.preventDefault()
         let names = 0
         try {
-            API.postForm('/filter-pokes-by-email', {
-                email: event.target.value
+            API.postForm('/filter-pokes-by-name', {
+                name: event.target.value
             })
                 .then(response => {
                     names = response.data
@@ -115,7 +122,7 @@ const AllPokesHistory = () =>{
                                 </svg>
                                 <DatePicker placeholderText="Data nuo" selected={startDate} onChange={(date) => {
                                     setStartDate(date)
-                                    setSearched(true)
+                                    setSearchedByDate(true)
                                     handleSetUpdate(date)
                                 }}
                                     className="w-8/12">
@@ -131,7 +138,7 @@ const AllPokesHistory = () =>{
                                 </svg>
                                 <DatePicker placeholderText="Data iki" selected={endDate} onChange={(date) => {
                                     setEndDate(date)
-                                    setSearched(true)
+                                    setSearchedByDate(true)
                                     handleSetUpdate(date)
                                 }}
                                     className="w-8/12">
@@ -160,7 +167,10 @@ const AllPokesHistory = () =>{
                                 {filtered.data? filtered.data.map(d=>
                                     <RenderAllPokes key={d.id} id={d.id} sender={d.sender} recipient={d.recipient} date_time={d.date_time}/>
                                 ):null}
-                                {allPokes.length? allPokes.map(d=>
+                                {(allPokes && searched === false && searchedByDate === false)? allPokes.map(d=>
+                                    <RenderAllPokes key={d.id} id={d.id} sender={d.sender} recipient={d.recipient} date_time={d.date_time}/>
+                                ):null}
+                                {(pokesByDate && searched === false && searchedByDate === true)? pokesByDate.map(d=>
                                     <RenderAllPokes key={d.id} id={d.id} sender={d.sender} recipient={d.recipient} date_time={d.date_time}/>
                                 ):null}
                                 </tbody>
@@ -170,8 +180,13 @@ const AllPokesHistory = () =>{
 
                         </div>
                         <div className="pt-2 flex justify-center pl-96">
-                            {(allPokes && searched === false)?
+                            {(allPokes && searched === false && searchedByDate === false)?
                                 <Pagination page={page} setPage={setPage} lastPage={lastPage}/>
+                                :null}
+                        </div>
+                        <div className="pt-2 flex justify-center pl-96">
+                            {(pokesByDate && searched === false && searchedByDate === true)?
+                                <Pagination page={pageByDate} setPage={setPageByDate} lastPage={lastPageByDate}/>
                                 :null}
                         </div>
                     </div>

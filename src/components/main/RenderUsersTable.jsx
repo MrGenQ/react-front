@@ -23,7 +23,9 @@ const RenderUsersTable = (props) => {
         API.postForm('get-pokes', {
             email: props.email,
         }).then(resp => {
-            setPokes(resp.data[0].count)
+            if(resp.data){
+                setPokes(resp.data.length)
+            }
         })
     }, [update])
     return (

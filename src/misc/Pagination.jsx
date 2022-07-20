@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import './index.css'
+/*
+Custom puslapiavimo funkcija
+puslapiavimas matomas tik tada kai įrašai netelpa į vieną puslapį
+ */
 const Pagination = ({page, setPage, lastPage, step = 2}) => {
     const [pagination, setPagination] = useState([]);
     const nextPage = () => {
