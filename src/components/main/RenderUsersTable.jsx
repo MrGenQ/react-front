@@ -7,17 +7,22 @@ const RenderUsersTable = (props) => {
     const {user, update, handleSetUpdate} = useUserContext()
     const [pokes, setPokes] = useState(0)
     const pokeUser = () => {
+        let valid = true
         try {
-            API.post('/pokes', {
+            API.postForm('/poke-user', {
                 sender: user.email,
                 recipient: props.email,
             }).then(response => {
-                handleSetUpdate(`poke_id ${response.data.id}`)
+                console.log(response)
+                handleSetUpdate(`poke_id ${response.data.data}`)
+                if(response.data.error){valid = false}
             }).then(() => {
-                API.postForm('/send-email', {
-                    sender: user.email,
-                    recipient: props.email,
-                }).then(resp => console.log(resp))
+                if(valid){
+                    API.postForm('/send-email', {
+                        sender: user.email,
+                        recipient: props.email,
+                    }).then(resp => console.log(resp))
+                }
             })
         } catch(err) {
             console.log(err);

@@ -2,15 +2,27 @@ import { Fragment} from "react";
 import { Menu, Transition } from "@headlessui/react";
 import React from "react";
 import {useUserContext} from "../../context/UserContext";
-import login from "../auth/Login";
+import {Link} from "react-router-dom";
+import API from "../../API";
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 const Logout = () => {
     const {user, handleAddUser} = useUserContext()
     const logout = () => {
-        handleAddUser('')
-        window.location = '/login'
+
+        try {
+            API.post('/logout')
+                .then(response => {
+                    handleAddUser(response.data.data)
+                })
+                .then(() => setTimeout(function() {
+                    window.location = '/login'
+                }, 1000))
+        } catch (error){
+            console.log(error)
+        }
+
     }
     return (
         <>
@@ -35,21 +47,10 @@ const Logout = () => {
                     leaveTo="transform opacity-0 scale-95"
                 >
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none">
-                        <div className="py-1">
-                            <Menu.Item>
-                                {({ active }) => (
-                                    <a
-                                        href="#"
-                                        className={classNames(
-                                            active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                                            "block px-4 py-2 text-sm"
-                                        )}
-                                    >
-                                        <div onClick={logout}>Logout</div>
-                                    </a>
-                                )}
-                            </Menu.Item>
-
+                        <div className="py-1 flex justify-center">
+                            {user?
+                                <button onClick={logout} className="flex justify-center">Atsijungti</button>
+                                :<Link to='/login' className="flex justify-center">Prisijungti</Link>}
                         </div>
                     </Menu.Items>
                 </Transition>

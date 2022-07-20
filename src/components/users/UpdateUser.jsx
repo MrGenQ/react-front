@@ -29,13 +29,11 @@ const UpdateUser = () => {
                             setValidate(response.data.errors)
                             handleAddUser(response.data.data)
                         }
-                        console.log(response)
                     }).then(() => {
                     if(!error){
                         API.postForm(`/update-poke/${oldEmail}`, {
                             'newEmail': event.target.email.value
                         })
-                            .then(resp => console.log(resp))
                     }
 
                 })
@@ -45,7 +43,6 @@ const UpdateUser = () => {
                 console.log(err);
             }
     }
-    console.log(user)
     return (
         <div className="container-fluid bg-gray-100">
             <Navbar/>

@@ -19,7 +19,7 @@ function App() {
                 <Router>
                     <div className="absolute">
                         <button onClick={notify}></button>
-                        <ToastContainer />
+                        <ToastContainer/>
                     </div>
                     <Routes>
                         <Route exact path="/" element={<Register/>}/>

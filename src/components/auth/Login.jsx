@@ -19,7 +19,10 @@ const Login = () => {
                 else {
                     handleErrors('')
                     handleAddUser(resp.data.data)
-                    window.location = '/autentifikuota'
+                    setTimeout(function() {
+                            window.location = '/autentifikuota'
+                    }, 1000)
+
                 }
                 console.log(resp.data)
             })

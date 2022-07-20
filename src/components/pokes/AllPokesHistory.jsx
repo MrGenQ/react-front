@@ -31,7 +31,6 @@ const AllPokesHistory = () =>{
                 offset: (pageByDate-1)*10
             })
                 .then(response => {
-                    console.log(response.data.page)
                     if(response.data.page){
                         setLastPageByDate(Math.ceil(response.data.page.length/10))
                     }
@@ -40,6 +39,7 @@ const AllPokesHistory = () =>{
         } catch (error){
             console.log(error)
         }
+        setSearched(false)
     }, [startDate, endDate, pageByDate, searchedByDate])
     useEffect(() => {
         try {
@@ -48,7 +48,6 @@ const AllPokesHistory = () =>{
                 offset: (page-1)*10,
             })
                 .then(response => {
-                    console.log(response.data)
                     setLastPage(Math.ceil(response.data.page.length/10))
                     setPokes(response.data.data)
                 })
@@ -123,6 +122,7 @@ const AllPokesHistory = () =>{
                                 <DatePicker placeholderText="Data nuo" selected={startDate} onChange={(date) => {
                                     setStartDate(date)
                                     setSearchedByDate(true)
+                                    setPageByDate(1)
                                     handleSetUpdate(date)
                                 }}
                                     className="w-8/12">
@@ -139,6 +139,7 @@ const AllPokesHistory = () =>{
                                 <DatePicker placeholderText="Data iki" selected={endDate} onChange={(date) => {
                                     setEndDate(date)
                                     setSearchedByDate(true)
+                                    setPageByDate(1)
                                     handleSetUpdate(date)
                                 }}
                                     className="w-8/12">

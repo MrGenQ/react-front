@@ -4,6 +4,7 @@ import API from "../../API";
 import Papa from "papaparse";
 const ImportUsers = () => {
     const [file, setSelectedFile] = useState();
+    const [validate, setValidate] = useState({})
     function handleSubmit(e){
         e.preventDefault()
         Papa.parse(file, {
@@ -15,7 +16,12 @@ const ImportUsers = () => {
                         method: "POST",
                         data: csvData.data,
                     }).then(resp => {
-                        console.log(resp)
+                        if(resp.data.errors){
+                            setValidate(resp.data)
+                        }
+                        else {
+                            setValidate({})
+                        }
                     })
                 } catch(error) {
                     console.log(error)
@@ -64,6 +70,10 @@ const ImportUsers = () => {
                                             m-0
                                             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                             ></input>
+                            {validate.errors? <div
+                                className="p-2.5 mb-3 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+                                role="alert"><span className="font-medium">{validate.errors}</span>
+                            </div>: null}
                             <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white w-36 font-bold py-2 px-4 rounded mt-5">
                                 Importuoti
                             </button>
