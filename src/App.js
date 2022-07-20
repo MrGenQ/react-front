@@ -17,7 +17,7 @@ function App() {
           <div>
               <UserProvider>
                 <Router>
-                    <div className="absolute capitalize">
+                    <div className="absolute">
                         <button onClick={notify}></button>
                         <ToastContainer />
                     </div>
