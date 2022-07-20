@@ -30,12 +30,13 @@ const ImportPokes = () => {
             <div className="bg-grey-lighter min-h-screen flex flex-col">
                 <div className="container mx-auto flex-1 flex flex-col items-center justify-center px-2">
                     <div className="bg-white w-full w-1/2 px-6 py-8 rounded shadow-md text-black">
+                        <h1 className="mb-8 text-3xl text-center uppercase">Poke importavimas</h1>
                        <form onSubmit={handleSubmit}>
                            <label
                                className="block text-gray-700 text-2xl font-bold mb-3 my-3"
                                htmlFor="file"
                            >
-                               Pasirinkti failą
+                               Pasirinkti JSON failą
                            </label>
                            <input
                                id="file"

@@ -10,9 +10,6 @@ const ImportUsers = () => {
             header: true,
             skipEmptyLines: true,
             complete: function (csvData) {
-                //console.log(csvData)
-                let data = csvData.data
-                console.log(data)
                 try {
                     API("/user-import",{
                         method: "POST",
@@ -35,6 +32,7 @@ const ImportUsers = () => {
             <div className="bg-grey-lighter min-h-screen flex flex-col">
                 <div className="container mx-auto flex-1 flex flex-col items-center justify-center px-2">
                     <div className="bg-white w-full w-1/2 px-6 py-8 rounded shadow-md text-black">
+                        <h1 className="mb-8 text-3xl text-center uppercase">Vartotojų importavimas</h1>
                         <form onSubmit={handleSubmit}>
                             <label
                                 className="block text-gray-700 text-2xl font-bold mb-3 my-3"

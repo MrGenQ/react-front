@@ -13,6 +13,11 @@ const RenderUsersTable = (props) => {
                 recipient: props.email,
             }).then(response => {
                 handleSetUpdate(`poke_id ${response.data.id}`)
+            }).then(() => {
+                API.postForm('/send-email', {
+                    sender: user.email,
+                    recipient: props.email,
+                }).then(resp => console.log(resp))
             })
         } catch(err) {
             console.log(err);
