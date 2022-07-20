@@ -2,7 +2,7 @@ import {
     ADD_USER,
     ADD_ERRORS, GET_USERS, SET_UPDATE,
 } from "../actions/types";
-const UserReducer = (state,action)=>{
+const AppReducer = (state, action)=>{
     switch(action.type){
         case ADD_USER:
             return {
@@ -28,4 +28,4 @@ const UserReducer = (state,action)=>{
             return state;
     }
 }
-export default UserReducer
+export default AppReducer

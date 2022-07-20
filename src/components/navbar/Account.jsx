@@ -1,13 +1,17 @@
 import { Fragment} from "react";
 import { Menu, Transition } from "@headlessui/react";
 import React from "react";
-import {useUserContext} from "../../context/UserContext";
+import {useAppContext} from "../../context/AppContext";
 import {Link} from "react-router-dom";
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
+/*
+Navigacijos elementas,
+atvaizduoja vartotojo duomenis ir profilio redagavimo nuorodą
+ */
 const Account = () => {
-    const {user} = useUserContext()
+    const {user} = useAppContext()
     return (
         <>
             <Menu as="div" className="relative inline-block text-left">

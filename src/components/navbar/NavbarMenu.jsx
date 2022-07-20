@@ -3,7 +3,10 @@ import { Menu, Transition } from "@headlessui/react";
 import React from "react";
 
 import {Link} from "react-router-dom";
-
+/*
+Pagrindinės navigacijos funkcija,
+Ši funkcija grąžina visus galimus Link sistemai valdyti
+ */
 const NavbarMenu = () =>{
     return (
         <>

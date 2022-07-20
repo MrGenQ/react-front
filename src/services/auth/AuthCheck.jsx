@@ -1,7 +1,10 @@
-import {useUserContext} from "../../context/UserContext";
-
+import {useAppContext} from "../../context/AppContext";
+/*
+Autentifikacijos funkcija,
+jeigu aplikacija neturi vartotojo duomenų grąžinama i login komponentą
+ */
 const AuthCheck = () =>{
-    const {user} = useUserContext()
+    const {user} = useAppContext()
     return (
         <>
             {(!user)?

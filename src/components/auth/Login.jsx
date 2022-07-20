@@ -1,10 +1,13 @@
 import API from "../../API";
-import {useEffect} from "react";
 import Navbar from "../navbar/Navbar";
 import {Link} from "react-router-dom";
-import {useUserContext} from "../../context/UserContext";
+import {useAppContext} from "../../context/AppContext";
+/*
+Prisijungimo funkcija,
+po prisijungimo naviguojama i pagrindinį puslapį
+ */
 const Login = () => {
-    const {errors, handleErrors, user, handleAddUser} = useUserContext()
+    const {errors, handleErrors, user, handleAddUser} = useAppContext()
     const handleSubmit = (event) =>
     {
         event.preventDefault()
@@ -20,19 +23,16 @@ const Login = () => {
                     handleErrors('')
                     handleAddUser(resp.data.data)
                     setTimeout(function() {
-                            window.location = '/autentifikuota'
+                        window.location = '/autentifikuota'
                     }, 1000)
 
                 }
-                console.log(resp.data)
             })
         } catch(err) {
             console.log(err);
         }
 
     }
-    console.log(user)
-    console.log(errors)
     return (
         <div className="container-fluid bg-gray-100">
             <Navbar/>

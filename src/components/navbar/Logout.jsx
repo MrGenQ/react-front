@@ -1,14 +1,18 @@
 import { Fragment} from "react";
 import { Menu, Transition } from "@headlessui/react";
 import React from "react";
-import {useUserContext} from "../../context/UserContext";
+import {useAppContext} from "../../context/AppContext";
 import {Link} from "react-router-dom";
 import API from "../../API";
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
+/*
+Navigacijos elementas,
+skirtas atsijungti nuo sistemos
+ */
 const Logout = () => {
-    const {user, handleAddUser} = useUserContext()
+    const {user, handleAddUser} = useAppContext()
     const logout = () => {
 
         try {

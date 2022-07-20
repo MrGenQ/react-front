@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import API from "../../API";
-
+/*
+Funkcija skirta atvaizduoti gautus puslapiuotus poke duomenis
+ */
 const RenderAllPokes = (props) => {
     const [sender, setSender] = useState('')
     const [recipient, setRecipient] = useState('')

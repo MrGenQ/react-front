@@ -2,6 +2,13 @@ import Navbar from "../navbar/Navbar";
 import {useState} from "react";
 import API from "../../API";
 import Papa from "papaparse";
+/*
+User CSV importavimo funkcija,
+funkcija siunčia CSV duomenis į backend, kad funkcija sukurtų naujus vartotojus
+
+neleidžiama sukurti vartotojų jeigu email jau egzistuoja duomenų bazėje, gražina error,
+kurį atvaizduoja frontend
+ */
 const ImportUsers = () => {
     const [file, setSelectedFile] = useState();
     const [validate, setValidate] = useState({})

@@ -1,6 +1,12 @@
 import Navbar from "../navbar/Navbar";
 import API from "../../API";
 import {useEffect, useState} from "react";
+/*
+Registracijos funkcija,
+Ivedus i laukelius formos duomenys siunčiami į backend
+Duomenis validuoja backend, jeigu validacija randa neįvestų laukeliu
+ar netinkamų duomenų gražina validacijos errors ir frontend juos atvaizduoja
+ */
 const Register = () => {
     const [validate, setValidate] = useState({})
 
@@ -127,62 +133,3 @@ const Register = () => {
     )
 }
 export default Register
-/*
-if(!validate){
-            try {
-                API.postForm(`/register`, {
-                    'email': event.target.email.value,
-                    'password': event.target.password.value,
-                    'firstName': event.target.firstName.value,
-                    'lastName': event.target.lastName.value,
-                    'roles': 'user',
-                })
-                    .then(response => {
-                        console.log(response)
-                    });
-            } catch(err) {
-                console.log(err);
-            }
-        }
- */
-/*
-setValidate({})
-        if(event.target.password.value !== event.target.confirmPassword.value){
-            setValidate(validate => ({
-                ...validate,
-                ...{password: 'Slaptažodžiai neatitinka'}
-            }))
-        }
-        if(event.target.firstName.value === ''){
-            setValidate(validate => ({
-                ...validate,
-                ...{firstName: 'Vardas būtinas'}
-            }))
-        }
-        if(event.target.lastName.value === ''){
-            setValidate(validate => ({
-                ...validate,
-                ...{lastName: 'Pavardė būtina'}
-            }))
-        }
-        if(event.target.email.value === ''){
-            setValidate(validate => ({
-                ...validate,
-                ...{email: 'El. paštas būtinas'}
-            }))
-        }
-        if(event.target.password.value === ''){
-            setValidate(validate => ({
-                ...validate,
-                ...{password1: 'Slaptažodis būtinas'}
-            }))
-        }
-        if(event.target.confirmPassword.value === ''){
-            setValidate(validate => ({
-                ...validate,
-                ...{password2: 'Slaptažodžio pakartojimas būtinas'}
-            }))
-        }
-        console.log(validate.email)
-        if(Object.keys(validate).length === 0){
- */

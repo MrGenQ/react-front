@@ -2,15 +2,19 @@ import {Fragment, useEffect, useState} from "react";
 import { Menu, Transition } from "@headlessui/react";
 import React from "react";
 import API from "../../API";
-import {useUserContext} from "../../context/UserContext";
+import {useAppContext} from "../../context/AppContext";
 import RenderUserPokes from "./RenderUserPokes";
 import {Link} from "react-router-dom";
 import Spinner from "../../misc/Spinner";
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
+/*
+Navigacijos elementas,
+Skirtas pokes notifikacijom atvaizduoti ir galimybę naviguoti į visų poke istorija
+ */
 const Pokes = () =>{
-    const {user, update} = useUserContext()
+    const {user, update} = useAppContext()
     const [pokes, setPokes] = useState('')
     const [showSpinner,setShowSpinner] = useState(true)
     useEffect(()=>{

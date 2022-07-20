@@ -1,6 +1,9 @@
 import {useEffect, useState} from "react";
 import API from "../../API";
-
+/*
+Funkcija atvaizduoja vartotojo poke
+ir automatiškai įvygdo POST kad poker email gražintų kaip vardą ir pavardę
+ */
 const RenderUserPokes = (props) => {
     const [userInfo, setUserInfo] = useState('')
     useEffect(() => {

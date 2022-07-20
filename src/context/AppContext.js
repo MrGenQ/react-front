@@ -3,8 +3,8 @@ import {
     addUser,
     addErrors,
     getUsers, setUpdate,
-} from "../actions/UserActions";
-import UserReducer from "../reducers/UserReducer";
+} from "../actions/AppActions";
+import AppReducer from "../reducers/AppReducer";
 import {
     userStorage,
     allUsersStorage,
@@ -25,10 +25,10 @@ if (userStorage !== null) {
     };
 }
 
-const UserContext = React.createContext();
+const AppContext = React.createContext();
 
-const UserProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(UserReducer, initialState);
+const AppProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(AppReducer, initialState);
 
     const handleAddUser = (token) => {
         dispatch(addUser(token));
@@ -43,7 +43,7 @@ const UserProvider = ({ children }) => {
         dispatch(setUpdate(data))
     }
     return (
-        <UserContext.Provider
+        <AppContext.Provider
             value={{
                 ...state,
                 handleAddUser,
@@ -53,12 +53,12 @@ const UserProvider = ({ children }) => {
             }}
         >
             {children}
-        </UserContext.Provider>
+        </AppContext.Provider>
     );
 };
 
-export const useUserContext = () => {
-    return useContext(UserContext);
+export const useAppContext = () => {
+    return useContext(AppContext);
 };
 
-export { UserContext, UserProvider };
+export { AppContext, AppProvider };

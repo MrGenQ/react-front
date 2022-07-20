@@ -1,10 +1,11 @@
 import {useEffect, useState} from "react";
 import API from "../../API";
-import {useUserContext} from "../../context/UserContext";
-import {Link} from "react-router-dom";
-
+import {useAppContext} from "../../context/AppContext";
+/*
+Funkcija skirta atvaizduoti puslapiuotus vartotojus
+ */
 const RenderUsersTable = (props) => {
-    const {user, update, handleSetUpdate} = useUserContext()
+    const {user, update, handleSetUpdate} = useAppContext()
     const [pokes, setPokes] = useState(0)
     const pokeUser = () => {
         let valid = true
@@ -13,7 +14,6 @@ const RenderUsersTable = (props) => {
                 sender: user.email,
                 recipient: props.email,
             }).then(response => {
-                console.log(response)
                 handleSetUpdate(`poke_id ${response.data.data}`)
                 if(response.data.error){valid = false}
             }).then(() => {
@@ -21,7 +21,7 @@ const RenderUsersTable = (props) => {
                     API.postForm('/send-email', {
                         sender: user.email,
                         recipient: props.email,
-                    }).then(resp => console.log(resp))
+                    })
                 }
             })
         } catch(err) {

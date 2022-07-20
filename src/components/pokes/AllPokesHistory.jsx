@@ -5,12 +5,17 @@ import API from "../../API";
 import RenderUsersTable from "../main/RenderUsersTable";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {useUserContext} from "../../context/UserContext";
+import {useAppContext} from "../../context/AppContext";
 import Pagination from "../../misc/Pagination";
 import AuthCheck from "../../services/auth/AuthCheck";
+/*
+Funkcija skirta apžiūrėta visus puslapiuotus poke,
+galima surasti poke gavėją pagal vardą,
+galima surasti pokes nuo ir iki tam tikros datos
+ */
 const AllPokesHistory = () =>{
     AuthCheck()
-    const {update, handleSetUpdate} = useUserContext()
+    const {update, handleSetUpdate} = useAppContext()
     const [allPokes, setPokes] = useState([])
     const [pokesByDate, setPokesByDate] = useState([])
     const [startDate, setStartDate] = useState(new Date());
@@ -58,6 +63,7 @@ const AllPokesHistory = () =>{
 
     const searchName = (event) => {
         event.preventDefault()
+        setSearchedByDate(false)
         let names = 0
         try {
             API.postForm('/filter-pokes-by-name', {
@@ -165,7 +171,7 @@ const AllPokesHistory = () =>{
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {filtered.data? filtered.data.map(d=>
+                                {filtered.data && searched === true && searchedByDate === false? filtered.data.map(d=>
                                     <RenderAllPokes key={d.id} id={d.id} sender={d.sender} recipient={d.recipient} date_time={d.date_time}/>
                                 ):null}
                                 {(allPokes && searched === false && searchedByDate === false)? allPokes.map(d=>

@@ -4,7 +4,9 @@ import {useEffect, useState} from "react";
 import API from "../../API";
 import Pagination from "../../misc/Pagination";
 import AuthCheck from "../../services/auth/AuthCheck";
-
+/*
+Funkcija skirta surasti vartotoją pagal vardą
+ */
 const UserSearch = () => {
     AuthCheck()
     const [users, setUsers] = useState('')
@@ -14,7 +16,6 @@ const UserSearch = () => {
     const searchName = (event) => {
         event.preventDefault()
         setName(event.target.value)
-        console.log(event.target.value)
     }
     useEffect(() => {
         try {
@@ -24,7 +25,6 @@ const UserSearch = () => {
                 offset: (page-1)*10,
             })
                 .then(response => {
-                    console.log(response.data.page)
                     setLastPage(Math.ceil(response.data.page.length/10))
                     setUsers(response.data.data)
                 })
@@ -32,7 +32,6 @@ const UserSearch = () => {
             console.log(error)
         }
     }, [page, name])
-    console.log(users)
     return (
         <div className="container-fluid bg-gray-100">
             <Navbar/>

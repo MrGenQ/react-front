@@ -2,13 +2,16 @@ import Navbar from "../navbar/Navbar";
 import AuthCheck from "../../services/auth/AuthCheck";
 import {useEffect, useState} from "react";
 import API from "../../API";
-import {useUserContext} from "../../context/UserContext";
+import {useAppContext} from "../../context/AppContext";
 import RenderUsersTable from "./RenderUsersTable";
 import Pagination from "../../misc/Pagination";
-
-const Main = () => {
+/*
+Visų vartotojų atvaizdavimo funkcija,
+puslapiuoja vartojus
+ */
+const AllUsers = () => {
     AuthCheck()
-    const {user, allUsers, handleGetUsers} = useUserContext()
+    const {user, allUsers, handleGetUsers} = useAppContext()
     const [page, setPage] = useState(1)
     const [lastPage, setLastPage] = useState(0)
     useEffect(() => {
@@ -67,4 +70,4 @@ const Main = () => {
         </div>
     )
 }
-export default Main
+export default AllUsers

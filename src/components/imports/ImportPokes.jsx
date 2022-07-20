@@ -1,6 +1,10 @@
 import Navbar from "../navbar/Navbar";
 import {useState} from "react";
 import API from "../../API";
+/*
+Poke json importavimo funkcija,
+funkcija siunčia json duomenis į backend, kad funkcija sukurtų naujus poke
+ */
 const ImportPokes = () => {
     const [file, setSelectedFile] = useState();
     function handleSubmit(e){
@@ -13,8 +17,6 @@ const ImportPokes = () => {
             try {
                 API.postForm("/poke-import",{
                     file: json_data,
-                }).then(resp => {
-                    console.log(resp)
                 })
             } catch(error) {
                 console.log(error)

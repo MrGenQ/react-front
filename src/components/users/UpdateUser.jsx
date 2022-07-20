@@ -1,11 +1,17 @@
 import Navbar from "../navbar/Navbar";
 import {useState} from "react";
 import API from "../../API";
-import {useUserContext} from "../../context/UserContext";
-
+import {useAppContext} from "../../context/AppContext";
+/*
+Funkcija skirta atnaujinti prisijungusio vartotojo duomenis,
+Prisijungimo vardas jau yra nustatytas, nes jo keisti negalima
+visi kiti laukai būtini, kitaip backend grąžina validacijos error,
+Svarbu! Negalima įvesti egzistuojančio email duomenų bazėje, bet galima įvesti tą patį email kurį vedėte registruojantis
+Jeigu vartotojas sėkmingai atnaujinamas jūsų vartotojui skirti poke atsinaujina gavėjo email
+ */
 const UpdateUser = () => {
     const [validate, setValidate] = useState({})
-    const {user, handleAddUser} = useUserContext()
+    const {user, handleAddUser} = useAppContext()
     const handleSubmit = (event) => {
         event.preventDefault()
         let oldEmail = user.email
