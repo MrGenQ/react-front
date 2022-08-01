@@ -14,16 +14,19 @@ const RenderUsersTable = (props) => {
                 sender: user.email,
                 recipient: props.email,
             }).then(response => {
-                handleSetUpdate(`poke_id ${response.data.data}`)
+
                 if(response.data.error){valid = false}
-            }).then(() => {
+                else {
+                    handleSetUpdate(`poke_id ${response.data.data}`)
+                }
+            })/*.then(() => {
                 if(valid){
                     API.postForm('/send-email', {
                         sender: user.email,
                         recipient: props.email,
                     })
                 }
-            })
+            })*/
         } catch(err) {
             console.log(err);
         }
@@ -34,7 +37,7 @@ const RenderUsersTable = (props) => {
             email: props.email,
         }).then(resp => {
             if(resp.data){
-                setPokes(resp.data.length)
+                setPokes(resp.data.count)
             }
         })
     }, [update])

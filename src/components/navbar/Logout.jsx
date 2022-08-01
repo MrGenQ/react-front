@@ -16,13 +16,13 @@ const Logout = () => {
     const logout = () => {
 
         try {
-            API.post('/logout')
+            API.get('/logout')
                 .then(response => {
-                    handleAddUser(response.data.data)
-                })
-                .then(() => setTimeout(function() {
-                    window.location = '/login'
-                }, 1000))
+                        handleAddUser(response.data.data)
+                    })
+                    .then(() => setTimeout(function() {
+                        window.location = '/login'
+                    }, 1000))
         } catch (error){
             console.log(error)
         }

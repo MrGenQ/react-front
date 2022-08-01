@@ -2,6 +2,7 @@ import Navbar from "../navbar/Navbar";
 import {useState} from "react";
 import API from "../../API";
 import {useAppContext} from "../../context/AppContext";
+import AuthCheck from "../../services/auth/AuthCheck";
 /*
 Funkcija skirta atnaujinti prisijungusio vartotojo duomenis,
 Prisijungimo vardas jau yra nustatytas, nes jo keisti negalima
@@ -10,6 +11,7 @@ Svarbu! Negalima įvesti egzistuojančio email duomenų bazėje, bet galima įve
 Jeigu vartotojas sėkmingai atnaujinamas jūsų vartotojui skirti poke atsinaujina gavėjo email
  */
 const UpdateUser = () => {
+    AuthCheck()
     const [validate, setValidate] = useState({})
     const {user, handleAddUser} = useAppContext()
     const handleSubmit = (event) => {
@@ -18,6 +20,7 @@ const UpdateUser = () => {
         let error = true
             try {
                 API.postForm(`/update-user/${user.id}`, {
+                    'username': user.username,
                     'email': event.target.email.value,
                     'password': event.target.password.value,
                     'password_confirm': event.target.confirmPassword.value,
@@ -32,19 +35,20 @@ const UpdateUser = () => {
                         }
                         else {
                             error = false
-                            setValidate(response.data.errors)
-                            handleAddUser(response.data.data)
+                            setValidate({})
+                            API.get(`user-info/${user.id}`).then(resp => handleAddUser(resp.data))
                         }
-                    }).then(() => {
+                        console.log(response)
+                    })
+                    .then(() => {
                     if(!error){
-                        API.postForm(`/update-poke/${oldEmail}`, {
+                        API.postForm(`/update-poke`, {
+                            'oldEmail': oldEmail,
                             'newEmail': event.target.email.value
                         })
                     }
 
                 })
-
-
             } catch(err) {
                 console.log(err);
             }

@@ -5,6 +5,7 @@ jeigu aplikacija neturi vartotojo duomenų grąžinama i login komponentą
  */
 const AuthCheck = () =>{
     const {user} = useAppContext()
+    console.log(user)
     return (
         <>
             {(!user)?

@@ -9,7 +9,9 @@ const RenderUserPokes = (props) => {
     useEffect(() => {
         API.postForm('/user-by-email', {
             email: props.sender,
-        }).then(response => setUserInfo(response.data))
+        }).then(response => {
+            setUserInfo(response.data)
+        })
     }, [])
     return (
         <>

@@ -17,7 +17,7 @@ const ImportPokes = () => {
             try {
                 API.postForm("/poke-import",{
                     file: json_data,
-                })
+                }).then(resp => console.log(resp))
             } catch(error) {
                 console.log(error)
             }

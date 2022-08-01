@@ -8,6 +8,11 @@ po prisijungimo naviguojama i pagrindinį puslapį
  */
 const Login = () => {
     const {errors, handleErrors, user, handleAddUser} = useAppContext()
+    const handleUser = (e) =>{
+        e.preventDefault()
+        API.get('/user')
+            .then(resp => console.log(resp))
+    }
     const handleSubmit = (event) =>
     {
         event.preventDefault()
@@ -16,8 +21,10 @@ const Login = () => {
                 'username': event.target.username.value,
                 'password': event.target.password.value
             }).then(resp => {
+                console.log(resp)
+
                 if(resp.data.error){
-                    handleErrors(resp.data)
+                    handleErrors(resp.data.error)
                 }
                 else {
                     handleErrors('')
@@ -79,6 +86,11 @@ const Login = () => {
                         </div>
                     </div>
                 </div>
+            </form>
+            <form onSubmit={handleUser}>
+                <button type="submit" className="bg-green-500 hover:bg-blue-700 text-white w-48 font-bold py-2 px-4 rounded mt-5">
+                    <div>submit</div>
+                </button>
             </form>
         </div>
     )

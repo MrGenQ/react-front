@@ -14,16 +14,18 @@ const AllUsers = () => {
     const {user, allUsers, handleGetUsers} = useAppContext()
     const [page, setPage] = useState(1)
     const [lastPage, setLastPage] = useState(0)
+    const [paginateUsers, setPaginateUsers] = useState('')
     useEffect(() => {
-        API.postForm('/user', {
-            limit: 10,
-            offset: (page-1)*10,
-        })
+        API.get('/user')
             .then(response => {
-                setLastPage(Math.ceil(response.data.page.length/10))
+                setLastPage(Math.ceil(response.data.data.length/10))
                 handleGetUsers(response.data.data)
+                setPaginateUsers(paginate(response.data.data, 10, page))
             })
     }, [page])
+    function paginate(array, page_size, page_number) {
+        return array.slice((page_number - 1) * page_size, page_number * page_size);
+    }
     return(
         <div className="container-fluid bg-gray-100">
             <Navbar/>
@@ -53,7 +55,7 @@ const AllUsers = () => {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {(allUsers)? allUsers.map(d=>
+                                {(paginateUsers)? paginateUsers.map(d=>
                                     <RenderUsersTable key={d.id} id={d.id} firstName={d.firstName} lastName={d.lastName} email={d.email}/>
                                 ):null}
                                 </tbody>

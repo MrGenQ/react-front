@@ -18,17 +18,12 @@ const ImportUsers = () => {
             header: true,
             skipEmptyLines: true,
             complete: function (csvData) {
+                console.log(csvData.data)
                 try {
-                    API("/user-import",{
-                        method: "POST",
-                        data: csvData.data,
+                    API.postForm("/user-import",{
+                        file: JSON.stringify(csvData.data)
                     }).then(resp => {
-                        if(resp.data.errors){
-                            setValidate(resp.data)
-                        }
-                        else {
-                            setValidate({})
-                        }
+                        console.log(resp)
                     })
                 } catch(error) {
                     console.log(error)

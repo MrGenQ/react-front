@@ -23,7 +23,12 @@ const Register = () => {
                 })
                     .then(response => {
                         console.log(response)
-                        setValidate(response.data.errors)
+                        if(response.data.errors){
+                            setValidate(response.data.errors)
+                        }
+                        else {
+                            setValidate({})
+                        }
                     });
             } catch(err) {
                 console.log(err);
