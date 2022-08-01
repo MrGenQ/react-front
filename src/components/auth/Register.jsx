@@ -102,6 +102,14 @@ const Register = () => {
                                 className="p-2.5 mb-3 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
                                 role="alert"><span className="font-medium">{validate.password}</span>
                             </div>: null}
+                            {validate.pass_upper? <div
+                                className="p-2.5 mb-3 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+                                role="alert"><span className="font-medium">{validate.pass_upper}</span>
+                            </div>: null}
+                            {validate.pass_num? <div
+                                className="p-2.5 mb-3 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+                                role="alert"><span className="font-medium">{validate.pass_num}</span>
+                            </div>: null}
                             {validate.password_not_equal? <div
                                 className="p-2.5 mb-3 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
                                 role="alert"><span className="font-medium">{validate.password_not_equal}</span>
